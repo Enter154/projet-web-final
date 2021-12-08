@@ -4,9 +4,10 @@ namespace App;
 
 abstract class Database
 {
-    const DB_HOST = 'mysql:host=localhost;dbname=training-blog;charset=utf8';
+    const DB_HOST = 'mysql:host=localhost;dbname=projet-eligib-final;charset=utf8';
     const DB_USER = 'root';
     const DB_PASSWORD = 'a';
+    //Meilleur mot de passe 
 
     private $connection;
 

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\controller\PostController;
+use App\controller\UtilisateurController;
 
 class Router
 {
@@ -10,23 +11,28 @@ class Router
     {
         $route = $_GET['route'] ?? null;
         $action = $_GET['action'] ?? null;
+        $username = $_GET['username'] ?? null;
 
         if (isset($_GET['route'])) {
-            if ('post' === $route && $action) {
-                $postController = new PostController();
+            if ('contact' === $route) {
+                var_dump('contact');
+            } elseif ('accueil' === $route) {
+                var_dump('accueil');
+            } elseif ('utilisateur' === $route && $action) {
+                $utilisateurController = new UtilisateurController();
 
-                if ('create' === $action) {
-                    return $postController->create();
+                if ('create' === $action && $username) {
+                    return $utilisateurController->create($username);
                 } elseif ('read' === $action && isset($_GET['id'])) {
                     var_dump($_GET['id']);die;
-                    return $postController->read($_GET['id']);
+                    return $utilisateurController->read($_GET['id']);
                 }
-            } elseif ('contact' === $route) {
-                var_dump('contact');
-            }
+                
         } else {
             var_dump('hello');
             require_once 'index.php';
         }
     }
+}
+
 }
