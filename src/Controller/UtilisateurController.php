@@ -22,37 +22,31 @@ class UtilisateurController
             $this->utilisateurRepository->create($_POST);
         }
         $this->view->render('/user/create');
-        /*if (!empty($username)) {
-            $utilisateurRepository = new UtilisateurRepository();
-            $utilisateurRepository->createUser($username);
-            var_dump('Création d\'un utilisateur');
-        } else
-        {
-            var_dump('Echec creation');
-        }
-        ?>
-            <p> Un texte en html </p>
-        <?php
-        echo $username;*/
-        
         
     }
 
-    public function update(int $id) 
+    public function update() 
     {
         if ('POST' === $_SERVER['REQUEST_METHOD']) {
             $this->utilisateurRepository->update($_POST);
         }
 
-        $this->view->render('/user/update', [
-            'user' => $this->utilisateurRepository->getUserId($id),
-        ]);
+        $this->view->render('/user/update');
+    }
+
+    public function delete() 
+    {
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
+            $this->utilisateurRepository->delete($_POST);
+        }
+
+        $this->view->render('/user/delete');
     }
 
     public function read(int $id)
     {
         $utilisateurRepository = new UtilisateurRepository();
-        $utilisateur = $utilisateurRepository->get($id);
+        $utilisateur = $utilisateurRepository->getUserId($id);
 
         var_dump($utilisateur);
     }

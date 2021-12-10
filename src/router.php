@@ -23,11 +23,12 @@ class Router
 
                 if ('create' === $action) {
                     return $utilisateurController->create();
-                } elseif ('read' === $action && isset($_GET['id'])) {
-                    var_dump($_GET['id']);die;
+                } elseif ('read' === $action  && isset($_GET['id'])) {
                     return $utilisateurController->read($_GET['id']);
-                } elseif ('update' === $action && isset($_GET['id'])) {
-                    return $utilisateurController->update($_GET['id']);
+                } elseif ('update' === $action ) {
+                    return $utilisateurController->update();
+                } elseif ('delete' === $action ) {
+                    return $utilisateurController->delete();
                 }
                 
         } else {

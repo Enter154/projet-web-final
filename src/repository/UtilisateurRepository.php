@@ -35,11 +35,23 @@ class UtilisateurRepository extends Database
 
     public function create(array $data = [])
     {
-        if (null == ($test = $this->createQuery("SELECT username FROM utilisateur WHERE username = (:username)", 
-        ['username' => $data['username']]))){
-            $result = $this->createQuery("INSERT INTO utilisateur (username) VALUES (:username)", 
+        $result = $this->createQuery("INSERT INTO utilisateur (username) VALUES (:username)", 
         ['username' => $data['username']]);
-        } 
+    }
+
+    public function update(array $data = [])
+    {
+            $result = $this->createQuery("UPDATE utilisateur SET username = (:username) WHERE idUtilisateur = (:id)", 
+        ['username' => $data['username'],
+         'id' => $data['id']
+    ]);
+    }
+
+    public function delete(array $data = [])
+    {
+            $result = $this->createQuery("DELETE FROM utilisateur WHERE idUtilisateur = (:id)", 
+        ['id' => $data['id']
+    ]);
     }
 
 }
