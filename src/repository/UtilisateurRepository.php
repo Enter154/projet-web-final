@@ -24,18 +24,22 @@ class UtilisateurRepository extends Database
         return $this->buildObject($result->fetch());
     }
 
-    private function buildObject(array $row): ModelPost
+    private function buildObject(array $row): ModelUtilisateur
     {
         $user = new ModelUtilisateur;
         $user->setId((int) $row['idUtilisateur']);
-        $user->setUsername($row['title']);
+        $user->setUsername($row['username']);
 
         return $user;
     }
 
-    public function createUser($username)
+    public function create(array $data = [])
     {
-        $result = $this->createQuery("INSERT INTO utilisateur (username) VALUES (:username)", 
-        ['username' => $username]);
+        if (null == ($test = $this->createQuery("SELECT username FROM utilisateur WHERE username = (:username)", 
+        ['username' => $data['username']]))){
+            $result = $this->createQuery("INSERT INTO utilisateur (username) VALUES (:username)", 
+        ['username' => $data['username']]);
+        } 
     }
+
 }

@@ -21,11 +21,13 @@ class Router
             } elseif ('utilisateur' === $route && $action) {
                 $utilisateurController = new UtilisateurController();
 
-                if ('create' === $action && $username) {
-                    return $utilisateurController->create($username);
+                if ('create' === $action) {
+                    return $utilisateurController->create();
                 } elseif ('read' === $action && isset($_GET['id'])) {
                     var_dump($_GET['id']);die;
                     return $utilisateurController->read($_GET['id']);
+                } elseif ('update' === $action && isset($_GET['id'])) {
+                    return $utilisateurController->update($_GET['id']);
                 }
                 
         } else {

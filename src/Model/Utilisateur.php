@@ -19,12 +19,12 @@ class Utilisateur
         return $this;
     }
 
-    public function getUsername(): int
+    public function getUsername(): string
     {
         return $this->username;
     }
 
-    public function setUsername(int $username): self
+    public function setUsername(string $username): self
     {
         $this->username = $username;
 
